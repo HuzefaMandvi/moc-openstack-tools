@@ -340,7 +340,7 @@ def check_expiration(auth_file, worksheet_key):
     warn_time = timedelta(hours=int(config.get('expiration_reminder',
                                                'warn_time')))
     now = datetime.now()
-    timestamp = now.strftime(TIMESTAMP_FORMAT)
+    # timestamp = now.strftime(TIMESTAMP_FORMAT)
 
     sheet = Spreadsheet(keyfile=auth_file, sheet_id=worksheet_key)
     rows = sheet.get_all_rows('Form Responses 1')
@@ -348,7 +348,6 @@ def check_expiration(auth_file, worksheet_key):
     expired_list = []
 
     parse_function = parse_quota_row
-    csr_type = 'Change Quota'
 
     for idx, row in enumerate(rows):
 
@@ -382,8 +381,6 @@ def check_expiration(auth_file, worksheet_key):
     if expired_list:
         send_expired_reminders(reminders=expired_list,
                                worksheet_key=worksheet_key)
-
-    # do we want to timestamp the spreadsheet?
 
 
 if __name__ == '__main__':
