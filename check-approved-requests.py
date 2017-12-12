@@ -361,7 +361,7 @@ def check_expiration(auth_file, worksheet_key):
         # if less than warn_time until expiration
         # send a reminder email to the user
         # (should we keep track of if/when we have notified user?)
-        elif ((warn_time + end_date) >= now):
+        if ((warn_time + end_date) >= now):
             remind_user_list.append(row)
 
         # if we are past expiry date
