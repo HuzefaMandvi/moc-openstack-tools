@@ -336,12 +336,9 @@ def send_expired_reminders(reminders, worksheet_key):
 
 
 def check_expiration(auth_file, worksheet_key):
-    TIMESTAMP_FORMAT = "%d %b %Y %H:%M:%S"
     warn_time = timedelta(hours=int(config.get('expiration_reminder',
                                                'warn_time')))
     now = datetime.now()
-    # timestamp = now.strftime(TIMESTAMP_FORMAT)
-
     sheet = Spreadsheet(keyfile=auth_file, sheet_id=worksheet_key)
     rows = sheet.get_all_rows('Form Responses 1')
     remind_user_list = []
